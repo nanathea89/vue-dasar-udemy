@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+   
+</head>
+<body>
+    <div class="container py-5" id="app">
+        <div class="card">
+            <div class="card-header">
+                <h2>Manage Product</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-inline justify-content-end">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search..." v-model="searchTerm">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" v-if="searchTerm.length>=3" type="button"><i class ="fa fa-sync-alt"></i></button>
+                                        <button class="btn btn-outline-secondary" :disabled="searchTerm.length<3" type="button"><i class="fa fa-search"></i> </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div class="alert alert-danger" v-if="!products.length" role>No products found!
+                            <button type="button" class="close" aria-label="Close"><span area-hidden="true">&times;</span></button>
+                        </div>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product Name</th>
+                                    <th>Stock</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="product in products" key="product.id">
+                                    <td>{{product.id}}</td>
+                                    <td>{{product.descp}}</td>
+                                    <td>{{product.qty}}</td>
+                                    <td>{{product.price}}</td>
+
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="row" v-if="products.length">
+                    <div class="col-12">
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-end">
+                              <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                              </li>
+                              <li class="page-item" v-for="pg in Math.ceil((products.length)/limitPage)"><a class="page-link" href="#">{{pg}}</a></li>
+                              <!-- <li class="page-item active">
+                                <span class="page-link">
+                                  2
+                                  <span class="sr-only">(current)</span>
+                                </span>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                              <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                              </li>
+                            </ul>
+                          </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="js/lat9.js"></script>
+</body>
+</html>
