@@ -12,18 +12,26 @@
         <h1 v-text="message"></h1>
         <!-- <h2 v-html="'isUpload : '+ isUpload"></h2> -->
         <!-- <h2>File selcted : {{ selectedFile }}</h2> -->
-        <div class="alert alert-danger" role="alert" v-show="!items.length">
+        <div class="alert alert-danger" role="alert" v-show="!files.length">
             You have no any files
         </div>
-        <div class="alert alert-info" role="alert" v-show="items.length">
-            Total FIle : {{items.length}}
+        <div class="alert alert-info" role="alert" v-show="files.length">
+            Total FIle : {{files.length}}
         </div>
         <ul class="list-group py-3">
-            <!-- <li v-for="item in items" :key="item.id"  :title="hoveredItem==item.id?`nama file :${item.name}`:''" :class="['list-group-item',hoveredItem == item.id?' list-group-item-info':'']" @mouseenter="hoveredItem=item.id" @mouseout="hoveredItem=null">
+            <!-- <li v-for="item in files" :key="item.id"  :title="hoveredItem==item.id?`nama file :${item.name}`:''" :class="['list-group-item',hoveredItem == item.id?' list-group-item-info':'']" @mouseenter="hoveredItem=item.id" @mouseout="hoveredItem=null">
                 {{item.name}}
             </li> -->
-            <li v-for="item in items" :key="item.id"  :title="hoveredItem==item.id?`nama file :${item.name}`:''" :class="{'list-group-item':true,'list-group-item-info':hoveredItem == item.id}" @mouseenter="hoveredItem=item.id" @mouseout="hoveredItem=null">
-                {{item.name}}
+            <!-- <li v-for="item in files" :key="item.id"  :title="hoveredItem==item.id?`nama file :${item.name}`:''" :class="{'list-group-item':true,'list-group-item-info':hoveredItem == item.id}" @mouseenter="hoveredItem=item.id" @mouseout="hoveredItem=null"> -->
+                <li v-for="file in files" :key="files.id"  :title="hoveredItem==file.id?`nama file :${file.name}`:''" 
+                :class="['list-group-item',
+                'd-flex',
+                'justify-content-between',
+                'align-files-center',
+                hoveredItem == file.id ?' list-group-item-warning':''
+                   ]" @mouseenter="hoveredItem=file.id" @mouseout="hoveredItem=null"> 
+                {{file.name}} 
+                <a href="#" @click.prevent="handleRemove(item)">&times;</a>
             </li>
         </ul>
         <div class="progress my-2" v-show="isUpload">
